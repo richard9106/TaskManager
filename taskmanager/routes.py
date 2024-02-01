@@ -7,4 +7,4 @@ from taskmanager.models import Category, Task
 @app.route("/")
 def home():
     """ renderizamos base html """
-    return render_template("base.html")
+    return render_template("task.html")
