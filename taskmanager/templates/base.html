@@ -14,11 +14,11 @@
 <body>
     <nav class="teal darken-4">
         <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">My Task Manager</a>
+          <a href="{{ url_for('home') }}" class="brand-logo">My Task Manager</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fa fa-bars"></i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="{{url_for('home')}}">Home</a></li>
-            <li><a href="{{url_for('home')}}">New Task</a></li>
+            <li><a href="{{url_for('add_task')}}">New Task</a></li>
             <li><a href="{{url_for('categories')}}">Catergory</a></li>
           
           </ul>
@@ -27,7 +27,7 @@
     
       <ul class="sidenav" id="mobile-demo">
         <li><a href="{{url_for('home')}}">Home</a></li>
-        <li><a href="{{url_for('home')}}">New Task</a></li>
+        <li><a href="{{url_for('add_task')}}">New Task</a></li>
         <li><a href="{{url_for('home')}}">Catergory</a></li>
       </ul>
     

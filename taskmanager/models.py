@@ -30,4 +30,3 @@ class Task(db.Model):
     def __repr__(self):
         """ __repr__ to represent itself in the form of a string """
         return f"#{self.id}-Task:{self.task_name}|Urgent:{self.is_urgent}"
-    
