@@ -23,12 +23,17 @@
         <i class="fa fa-exclamation-circle light-teal-text text-darken-4"></i>
         {% endif %}
         </div>
-          <div class="collapsible-body light-teal-text text-darken-4">
-            <span>Category : {{task.category}}</span>
-        </div>
-        <div class="collapsible-body light-teal-text text-darken-4">
-            <span>Description: {{task.task_description}}</span>
-        </div>
+            <div class="collapsible-body light-teal-text text-darken-4">
+                <p><strong>Category:</strong> {{task.category}}</p>
+                </br>
+                <p><strong>Description:</strong> {{task.task_description}}</p>
+                <a href="{{url_for('edit_task', task_id=task.id)}}" class="waves-effect waves btn green">Edit</a>
+                
+
+            </div>
+            <div class="collapsible-body light-teal-text text-darken-4">
+               
+            </div>
         </li>
         {% endfor %}
   </div>

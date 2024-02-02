@@ -2,15 +2,15 @@
 
 {% block content %}
 
-<h3 class="light-teal-text text-darken-4 center-align">Add Task</h3>
+<h3 class="light-teal-text text-darken-4 center-align">Edit Task</h3>
 
 <div class="row card-panel grey lighten-5">
-<form class="col s12" method="POST" action="{{url_for('edit_task')}}">
+<form class="col s12" method="POST" action="{{url_for('edit_task', task_id=task.id)}}">
     <!--task name -->
     <div class="row ">
       <div class="input-field col s12">
         <i class="fas fa-pencil-alt prefix light-teal-text text-darken-2"></i>
-        <input placeholder="task_name" id="task_name" name="task_name"  type="text" class="validate" required minlength="5" maxlength="50">
+        <input value="{{task.task_name}}" id="task_name" name="task_name"  type="text" class="validate" required minlength="5" maxlength="50">
         <label for="task_name">Task Name</label>
       </div>
     </div>
@@ -18,9 +18,11 @@
      <div class="row ">
       <div class="input-field col s12">
         <i class="fas fa-pencil-alt prefix light-teal-text text-darken-2"></i>
-        <textarea placeholder="task_description" id="task_description" name="task_description"
+        <textarea  id="task_description" name="task_description"
           type="text" class="validate materialize-textarea" required minlength="5" maxlength="200">
+          {{- task.task_description -}}
         </textarea>  
+        
         <label for="task_description">Task description</label>
       </div>
     </div>
@@ -28,7 +30,7 @@
     <div class="row ">
       <div class="input-field col s12">
         <i class="fas fa-calendar-alt prefix light-teal-text text-darken-2"></i>
-        <input id="due_date" name="due_date"  type="text" class="datepicker validate" required >
+        <input id="due_date" name="due_date" value="{{task.due_date.strftime('%d %B, %Y')}}" type="text" class="datepicker validate" required >
         <label for="due_date">Due Date</label>
       </div>
     </div>
@@ -38,7 +40,11 @@
         <div class="switch">
           <i class="fas fa-exclamation-circle prefix light-teal-text text-darken-2"></i>
           <label for="is_urgent">
-            <input  id="is_urgent" name="is_urgent" type="checkbox">
+            {% if task.is_urgent == True %}
+              <input  id="is_urgent" name="is_urgent" type="checkbox" checked >
+            {% else %}
+              <input  id="is_urgent" name="is_urgent" type="checkbox" >
+            {% endif %}
             <span class="lever"></span>
             Is Urgent??
           </label>
@@ -52,7 +58,11 @@
         <select name="category_id" id="category_id" class="validate" required>
           <option value="" desable selected>Choose Category</option>
           {% for category in categories %}
+          {% if category == task.category %}
+          <option value="{{ category.id }}" selected>{{ category.category_name }}</option>
+          {% else %}
           <option value="{{ category.id }}">{{ category.category_name }}</option>
+          {% endif %}
           {% endfor %}
         </select>
         <label for="category_id">Category</label>
@@ -63,7 +73,7 @@
      <div class="row ">
         <div class="input-field col s12 center-align">
           <button type="submit" class="btn teal darken-1 waves-effect waves-light">
-            Add Task<i class="fa fa-plus-square right"></i>
+            Edit Task<i class="fa fa-edit right"></i>
           </button>
         </div>
       </div>
